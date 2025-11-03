@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aïssah Makla Ezechiel - Portfolio Cybersécurité</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        body {
+            box-sizing: border-box;
+            padding-top: 70px;
+            /* évite que le contenu soit caché par la navbar fixe */
+
+        }
+
+        :root {
+            --navbar-height: 70px;
+            --primary-color: #dc3545;
+            --secondary-color: #6f42c1;
+            --accent-color: #20c997;
+        }
+
+        /* Empêche le chevauchement / masquage lors du scroll vers des ancres */
+        section {
+            scroll-margin-top: calc(var(--navbar-height) + 10px);
+        }
+
+
+        /* Désactive toute animation/rotation de la photo de profil */
+        .profile-photo {
+            animation: none !important;
+            transform: none !important;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            animation: gradientShift 10s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+
+            0%,100% {
+                background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            }
+
+            33% {
+                background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+            }
+
+            66% {
+                background: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
+            }
+        }
+
+        .hero-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+                opacity: 0.3;
+            }
+
+            50% {
+                transform: translateY(-30px) rotate(180deg);
+                opacity: 1;
+            }
+        }
+
+        .navbar-custom {
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(15px);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .navbar-scrolled {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.98) !important;
+        }
+
+        .typing-animation {
+            border-right: 3px solid white;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            50% {
+                border-color: white;
+            }
+
+            51%,
+            100% {
+                border-color: transparent;
+            }
+        }
+
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: none;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-20px) scale(1.03);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            opacity: 0;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 0.95;
+        }
+
+        .skill-progress {
+            height: 10px;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #e9ecef;
+            position: relative;
+        }
+
+        .progress-bar-animated {
+            animation: progressAnimation 2.5s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar-animated::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-image: linear-gradient(-45deg,
+                    rgba(255, 255, 255, 0.2) 25%,
+                    transparent 25%,
+                    transparent 50%,
+                    rgba(255, 255, 255, 0.2) 50%,
+                    rgba(255, 255, 255, 0.2) 75%,
+                    transparent 75%,
+                    transparent);
+            background-size: 50px 50px;
+            animation: move 2s linear infinite;
+        }
+
+        @keyframes move {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 50px 50px;
+            }
+        }
+
+        @keyframes progressAnimation {
+            from {
+                width: 0%;
+            }
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            color: white;
+            transform: perspective(1000px) rotateY(0deg);
+            transition: transform 0.6s;
+        }
+
+        .testimonial-card:hover {
+            transform: perspective(1000px) rotateY(5deg);
+        }
+
+        .contact-form {
+            background: linear-gradient(135deg, #dc3545 0%, #6f42c1 100%);
+            border-radius: 25px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-form::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .social-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .social-icon:hover::before {
+            left: 100%;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-8px) scale(1.2) rotate(5deg);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .timeline {
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 50%;
+            width: 25px;
+            height: 25px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            transform: translateX(-50%);
+            border: 5px solid white;
+            box-shadow: 0 0 0 5px var(--primary-color);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(220, 53, 69, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(220, 53, 69, 0);
+            }
+        }
+
+        .counter {
+            font-size: 3.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .service-icon {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            font-size: 2.2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s;
+        }
+
+        .service-icon:hover::before {
+            transform: translateX(100%);
+        }
+
+        .service-icon:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .experience-card {
+            border-left: 5px solid var(--primary-color);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .experience-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+            transition: width 0.4s ease;
+        }
+
+        .experience-card:hover::before {
+            width: 100%;
+            opacity: 0.05;
+        }
+
+        .experience-card:hover {
+            transform: translateX(15px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn {
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .card {
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .glitch {
+            animation: glitch 2s infinite;
+        }
+
+        @keyframes glitch {
+
+            0%,
+            100% {
+                transform: translate(0);
+            }
+
+            20% {
+                transform: translate(-2px, 2px);
+            }
+
+            40% {
+                transform: translate(-2px, -2px);
+            }
+
+            60% {
+                transform: translate(2px, 2px);
+            }
+
+            80% {
+                transform: translate(2px, -2px);
+            }
+        }
+
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.03;
+        }
+
+        .profile-photo {
+            border: 4px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+            display: inline-block;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            /* garde le recadrage correctement */
+        }
+
+        @media (min-width: 992px) {
+            .profile-photo {
+                width: 180px;
+                height: 180px;
+            }
+
+            /* légèrement plus grand sur grand écran */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Matrix Background -->
+    <canvas class="matrix-bg" id="matrix"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3 text-primary glitch" href="#home">
+                <i class="fas fa-shield-alt me-2"></i>AME
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">À Propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experience">Expérience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Compétences</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#formation">Formation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section d-flex align-items-center text-white">
+        <div class="hero-particles"></div>
+        <div class="container text-center position-relative">
+            <div class="row justify-content-center">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <div class="mb-4">
+                        <img src="potofolio.jpg" alt="Ezéchiel Aïssah - Photo" class="rounded-circle mb-3 profile-photo"
+                            width="300" height="300">
+                    </div>
+                    <h1 class="display-3 fw-bold mb-3" data-aos="fade-up" data-aos-delay="200">Aïssah Makla Ezechiel
+                    </h1>
+                    <h2 class="h3 mb-4" data-aos="fade-up" data-aos-delay="400">
+                        <span id="typing-text" class="typing-animation">Étudiant Ingénieur Cybersécurité</span>
+                    </h2>
+                    <p class="lead mb-5" data-aos="fade-up" data-aos-delay="600">Passionné de cybersécurité et cloud
+                        computing, étudiant en 3e année à l'ESEO</p>
+                    <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center" data-aos="fade-up"
+                        data-aos-delay="800">
+                        <button class="btn btn-light btn-lg px-4" data-bs-toggle="modal"
+                            data-bs-target="#projectsModal">
+                            <i class="fas fa-eye me-2"></i>Voir Mes Projets
+                        </button>
+                        <a href="#contact" class="btn btn-outline-light btn-lg px-4">
+                            <i class="fas fa-envelope me-2"></i>Me Contacter
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- Stats Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="counter" data-target="6">0</div>
+                    <p class="text-muted">Projets Réalisés</p>
+                </div>
+                <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="counter" data-target="3">0</div>
+                    <p class="text-muted">Années d'Études</p>
+                </div>
+                <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="counter" data-target="2">0</div>
+                    <p class="text-muted">Stages Effectués</p>
+                </div>
+                <div class="col-md-3 mb-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="counter" data-target="7">0</div>
+                    <p class="text-muted">Technologies Acquis</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+                    <div class="position-relative">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='400' viewBox='0 0 500 400'%3E%3Cdefs%3E%3ClinearGradient id='aboutGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23dc3545;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%236f42c1;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='500' height='400' fill='url(%23aboutGrad)'/%3E%3Cpath d='M250 100c-55 0-100 45-100 100s45 100 100 100 100-45 100-100-45-100-100-100zm0 150c-27.5 0-50-22.5-50-50s22.5-50 50-50 50 22.5 50 50-22.5 50-50 50z' fill='white' opacity='0.9'/%3E%3Cpath d='M200 150h100v20h-100zm20-30h60v15h-60zm10 60h80v10h-80z' fill='%23ffffff' opacity='0.7'/%3E%3C/svg%3E"
+                            alt="About Me" class="img-fluid rounded shadow-lg">
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <h2 class="display-5 fw-bold mb-4">À Propos de Moi</h2>
+                    <p class="lead mb-4">
+                        Étudiant passionné en 3e année de cycle ingénieur à l'ESEO, spécialisé en cybersécurité,
+                        cloud computing et sécurité des systèmes. À la recherche d'un stage de 6 mois à partir de
+                        février 2026.
+                    </p>
+                    <div class="accordion" id="aboutAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne">
+                                    <i class="fas fa-graduation-cap me-2"></i>Formation Actuelle
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show"
+                                data-bs-parent="#aboutAccordion">
+                                <div class="accordion-body">
+                                    <strong>ESEO - École Supérieure d'Électronique de l'Ouest</strong><br>
+                                    Cycle préparatoire aux Grandes Écoles (CPGE) - ESE<br>
+                                    Spécialisation : Cloud, Systèmes et Cybersécurité
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo">
+                                    <i class="fas fa-shield-alt me-2"></i>Spécialisations
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#aboutAccordion">
+                                <div class="accordion-body">
+                                    • Cybersécurité et détection d'intrusions<br>
+                                    • Cloud Computing et virtualisation<br>
+                                    • Sécurité des réseaux et infrastructures<br>
+                                    • Développement sécurisé
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseThree">
+                                    <i class="fas fa-users me-2"></i>Engagements
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse"
+                                data-bs-parent="#aboutAccordion">
+                                <div class="accordion-body">
+                                    <strong>Président du Club Afrique</strong> - Promotion de la culture africaine<br>
+                                    <strong>Membre du Club Musique</strong> - Activités artistiques et culturelles
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Expérience Professionnelle</h2>
+                <p class="lead">Mon parcours professionnel et mes stages</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card experience-card h-100 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="service-icon me-3" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div>
+                                    <h5 class="card-title mb-1">Stagiaire en Cybersécurité</h5>
+                                    <p class="text-muted mb-0">FAGACE, Cotonou-Bénin</p>
+                                    <small class="text-primary">Juillet - Novembre 2024</small>
+                                </div>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Configuration de systèmes de détection
+                                    d'intrusion</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Mise en œuvre en environnement
+                                    virtualisé</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Analyse de sécurité des
+                                    infrastructures</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card experience-card h-100 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="service-icon me-3" style="width: 60px; height: 60px; font-size: 1.5rem;">
+                                    <i class="fas fa-desktop"></i>
+                                </div>
+                                <div>
+                                    <h5 class="card-title mb-1">Assistant Bureautique</h5>
+                                    <p class="text-muted mb-0">Cour Lumière, Lomé-Togo</p>
+                                    <small class="text-primary">Juillet - Août 2022</small>
+                                </div>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Intervention sur équipements d'accès
+                                    réseau</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Support technique en entreprise</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Maintenance des systèmes informatiques
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Projets Académiques</h2>
+                <p class="lead">Mes réalisations techniques à l'ESEO</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up">
+                    <div class="card project-card h-100 shadow-sm">
+                        <div class="position-relative overflow-hidden">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Cdefs%3E%3ClinearGradient id='proj1' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23007bff;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%2320c997;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='250' fill='url(%23proj1)'/%3E%3Cpath d='M50 50h300v150H50z' fill='white' opacity='0.9'/%3E%3Cpath d='M70 80h100v20H70zm0 40h200v10H70zm0 30h150v10H70z' fill='%23007bff'/%3E%3Cpath d='M320 70h20v20h-20zm0 30h20v20h-20z' fill='%23dc3545'/%3E%3C/svg%3E"
+                                class="card-img-top" alt="Cloud Computing Project">
+                            <div class="project-overlay">
+                                <div class="text-center">
+                                    <button class="btn btn-light me-2" data-bs-toggle="modal"
+                                        data-bs-target="#projectModal1">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Projet Cloud Computing</h5>
+                            <p class="card-text">Transformation d'une salle PC en DataCenter avec déploiement automatisé
+                            </p>
+                            <div class="d-flex flex-wrap gap-1 mb-3">
+                                <span class="badge bg-primary">Vagrant</span>
+                                <span class="badge bg-success">Ansible</span>
+                                <span class="badge bg-info">Zabbix</span>
+                                <span class="badge bg-warning">OPNsense</span>
+                            </div>
+                            <small class="text-muted">Janvier - Juillet 2025</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card project-card h-100 shadow-sm">
+                        <div class="position-relative overflow-hidden">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Cdefs%3E%3ClinearGradient id='proj2' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%2328a745;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%236f42c1;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='250' fill='url(%23proj2)'/%3E%3Cpath d='M100 50h200v150H100z' fill='white' opacity='0.9'/%3E%3Cpath d='M120 80h160v20H120zm0 40h120v10H120zm0 30h140v10H120z' fill='%2328a745'/%3E%3Cpath d='M320 70l20 20-20 20z' fill='%23dc3545'/%3E%3C/svg%3E"
+                                class="card-img-top" alt="Infrastructure Project">
+                            <div class="project-overlay">
+                                <div class="text-center">
+                                    <button class="btn btn-light me-2" data-bs-toggle="modal"
+                                        data-bs-target="#projectModal2">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Projet InfraLogiciel</h5>
+                            <p class="card-text">Infrastructure pour application web avec automatisation de déploiement
+                            </p>
+                            <div class="d-flex flex-wrap gap-1 mb-3">
+                                <span class="badge bg-primary">Vagrant</span>
+                                <span class="badge bg-secondary">Infrastructure</span>
+                                <span class="badge bg-info">Collaboration</span>
+                            </div>
+                            <small class="text-muted">Décembre 2024 - Janvier 2025</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card project-card h-100 shadow-sm">
+                        <div class="position-relative overflow-hidden">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Cdefs%3E%3ClinearGradient id='proj3' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23dc3545;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23ffc107;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='250' fill='url(%23proj3)'/%3E%3Cpath d='M50 50h300v150H50z' fill='white' opacity='0.9'/%3E%3Cpath d='M70 80h100v15H70zm0 25h200v10H70zm0 20h150v10H70z' fill='%23dc3545'/%3E%3Ccircle cx='320' cy='90' r='15' fill='%23007bff'/%3E%3C/svg%3E"
+                                class="card-img-top" alt="Web Project">
+                            <div class="project-overlay">
+                                <div class="text-center">
+                                    <button class="btn btn-light me-2" data-bs-toggle="modal"
+                                        data-bs-target="#projectModal3">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Réseau Social Web</h5>
+                            <p class="card-text">Conception et création d'un réseau social complet avec base de données
+                            </p>
+                            <div class="d-flex flex-wrap gap-1 mb-3">
+                                <span class="badge bg-warning">HTML/CSS</span>
+                                <span class="badge bg-primary">PHP</span>
+                                <span class="badge bg-success">JavaScript</span>
+                                <span class="badge bg-info">MySQL</span>
+                            </div>
+                            <small class="text-muted">Mai - Juin 2024</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card project-card h-100 shadow-sm">
+                        <div class="position-relative overflow-hidden">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='250' viewBox='0 0 400 250'%3E%3Cdefs%3E%3ClinearGradient id='proj4' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%236f42c1;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%23007bff;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='250' fill='url(%23proj4)'/%3E%3Cpath d='M100 80h200v90H100z' fill='white' opacity='0.9'/%3E%3Cpath d='M120 100h160v15H120zm0 25h120v10H120zm0 20h140v10H120z' fill='%236f42c1'/%3E%3Cpath d='M320 50l20 30-20 30z' fill='%23dc3545'/%3E%3C/svg%3E"
+                                class="card-img-top" alt="Azure Project">
+                            <div class="project-overlay">
+                                <div class="text-center">
+                                    <button class="btn btn-light me-2" data-bs-toggle="modal"
+                                        data-bs-target="#projectModal4">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Infrastructures Réseaux & Sécurité</h5>
+                            <p class="card-text">Déploiement sur Microsoft Azure avec sécurisation avancée</p>
+                            <div class="d-flex flex-wrap gap-1 mb-3">
+                                <span class="badge bg-primary">Microsoft Azure</span>
+                                <span class="badge bg-warning">Apache2</span>
+                                <span class="badge bg-success">MySQL</span>
+                                <span class="badge bg-danger">GPG</span>
+                            </div>
+                            <small class="text-muted">Octobre - Novembre 2023</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Compétences Techniques</h2>
+                <p class="lead">Technologies et outils acquis</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 mb-4" data-aos="fade-right">
+                    <h4 class="mb-4">Langages de Programmation</h4>
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="fw-semibold">Java</span>
+                            <span class="text-primary">85%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-bar bg-primary progress-bar-animated" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="fw-semibold">Python</span>
+                            <span class="text-success">80%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-bar bg-success progress-bar-animated" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="fw-semibold">C</span>
+                            <span class="text-info">75%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-bar bg-info progress-bar-animated" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="fw-semibold">XML</span>
+                            <span class="text-warning">70%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-bar bg-warning progress-bar-animated" style="width: 70%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4" data-aos="fade-left">
+                    <h4 class="mb-4">Outils & Technologies</h4>
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="fw-semibold">GitHub</span>
+                            <span class="text-dark">90%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-bar bg-dark progress-bar-animated" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="fw-semibold">Cisco Packet Tracer</span>
+                            <span class="text-primary">85%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-bar bg-primary progress-bar-animated" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="fw-semibold">STM32</span>
+                            <span class="text-success">75%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-bar bg-success progress-bar-animated" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="fw-semibold">Blender</span>
+                            <span class="text-info">65%</span>
+                        </div>
+                        <div class="skill-progress">
+                            <div class="progress-bar bg-info progress-bar-animated" style="width: 65%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Skills -->
+            <div class="row mt-5">
+                <div class="col-12" data-aos="fade-up">
+                    <h4 class="text-center mb-4">Compétences Spécialisées</h4>
+                    <div class="row text-center">
+                        <div class="col-md-3 mb-3">
+                            <div class="p-3 bg-white rounded shadow-sm">
+                                <i class="fas fa-shield-alt fa-2x text-danger mb-2"></i>
+                                <h6>Cybersécurité</h6>
+                                <small class="text-muted">IDS, Sécurité réseau</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="p-3 bg-white rounded shadow-sm">
+                                <i class="fas fa-cloud fa-2x text-primary mb-2"></i>
+                                <h6>Cloud Computing</h6>
+                                <small class="text-muted">Azure, Virtualisation</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="p-3 bg-white rounded shadow-sm">
+                                <i class="fas fa-code fa-2x text-success mb-2"></i>
+                                <h6>Modélisation UML</h6>
+                                <small class="text-muted">Conception système</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="p-3 bg-white rounded shadow-sm">
+                                <i class="fas fa-vial fa-2x text-warning mb-2"></i>
+                                <h6>Tests Logiciels</h6>
+                                <small class="text-muted">JUnit, Validation</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formation Section -->
+    <section id="formation" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Formation</h2>
+                <p class="lead">Mon parcours académique</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow-lg border-0" data-aos="fade-up">
+                        <div class="card-body p-5 text-center">
+                            <div class="service-icon mb-4">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h3 class="card-title mb-3">ESEO - École Supérieure d'Électronique de l'Ouest</h3>
+                            <h5 class="text-primary mb-3">Cycle Ingénieur - 3e année</h5>
+                            <p class="lead mb-4">Spécialisation en Cloud, Systèmes et Cybersécurité</p>
+                            <div class="row text-start">
+                                <div class="col-md-6">
+                                    <h6 class="text-primary">Compétences développées :</h6>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check text-success me-2"></i>Sécurité des systèmes
+                                            informatiques</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Architecture cloud et
+                                            virtualisation</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Développement sécurisé</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="text-primary">Méthodologies :</h6>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-check text-success me-2"></i>Gestion de projet</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Travail collaboratif</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Analyse et conception</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <span class="badge bg-primary fs-6 px-3 py-2">Depuis 2022</span>
+                                <span class="badge bg-success fs-6 px-3 py-2 ms-2">Angers, France</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <!--je veux que tu fasse en sorte que je recoive le message envoyer via le formulaire a mon email-->
+
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="display-5 fw-bold">Contactez-Moi</h2>
+                <p class="lead">Intéressé par mon profil ? Parlons de votre projet !</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="contact-form position-relative">
+                        <!-- 🔹 Formspree intégré -->
+                        <form id="contactForm" action="https://formspree.io/f/mldpybqa" method="POST"
+                            class="needs-validation position-relative" style="z-index: 2;" novalidate>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="firstName" class="form-label text-white">Prénom</label>
+                                    <input type="text" class="form-control" id="firstName" name="Prénom" required>
+                                    <div class="invalid-feedback">Veuillez entrer votre prénom.</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="lastName" class="form-label text-white">Nom</label>
+                                    <input type="text" class="form-control" id="lastName" name="Nom" required>
+                                    <div class="invalid-feedback">Veuillez entrer votre nom.</div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label text-white">Email</label>
+                                <input type="email" class="form-control" id="email" name="Email" required>
+                                <div class="invalid-feedback">Veuillez entrer un email valide.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="subject" class="form-label text-white">Sujet</label>
+                                <select class="form-select" id="subject" name="Sujet" required>
+                                    <option value="">Choisissez un sujet</option>
+                                    <option value="stage">Opportunité de Stage</option>
+                                    <option value="cybersecurity">Projet Cybersécurité</option>
+                                    <option value="cloud">Projet Cloud</option>
+                                    <option value="collaboration">Collaboration</option>
+                                    <option value="other">Autre</option>
+                                </select>
+                                <div class="invalid-feedback">Veuillez choisir un sujet.</div>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="message" class="form-label text-white">Message</label>
+                                <textarea class="form-control" id="message" name="Message" rows="5" required></textarea>
+                                <div class="invalid-feedback">Veuillez entrer votre message.</div>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-light btn-lg px-5">
+                                    <i class="fas fa-paper-plane me-2"></i>Envoyer le Message
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- ✅ Message de confirmation visuel -->
+                        <div id="form-status" class="text-center mt-3 fw-bold"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ✅ Script JS pour validation et retour utilisateur -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("contactForm");
+            const status = document.getElementById("form-status");
+
+            form.addEventListener("submit", async function (event) {
+                event.preventDefault();
+
+                // Validation manuelle
+                if (!form.checkValidity()) {
+                    form.classList.add("was-validated");
+                    return;
+                }
+
+                // Envoi du formulaire
+                const data = new FormData(form);
+                try {
+                    const response = await fetch(form.action, {
+                        method: form.method,
+                        body: data,
+                        headers: { 'Accept': 'application/json' }
+                    });
+
+                    if (response.ok) {
+                        status.innerHTML = "✅ Message envoyé avec succès !";
+                        status.style.color = "limegreen";
+                        form.reset();
+                        form.classList.remove("was-validated");
+                    } else {
+                        status.innerHTML = "❌ Une erreur est survenue. Veuillez réessayer.";
+                        status.style.color = "red";
+                    }
+                } catch (error) {
+                    status.innerHTML = "⚠️ Impossible d’envoyer le message. Vérifiez votre connexion.";
+                    status.style.color = "orange";
+                }
+            });
+        });
+    </script>
+
+
+    <!-- Contact Info -->
+    <div class="row mt-5 text-center">
+        <div class="col-md-4 mb-4" data-aos="fade-up">
+            <div class="p-4">
+                <i class="fas fa-envelope fa-2x text-primary mb-3"></i>
+                <h5>Email</h5>
+                <p class="text-muted">makla.aissah@reseau.eseo.fr</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="p-4">
+                <i class="fas fa-phone fa-2x text-primary mb-3"></i>
+                <h5>Téléphone</h5>
+                <p class="text-muted">+33 7 64 39 58 63</p>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="p-4">
+                <i class="fas fa-map-marker-alt fa-2x text-primary mb-3"></i>
+                <h5>Localisation</h5>
+                <p class="text-muted">Angers, 49100</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Languages -->
+    <div class="row mt-4">
+        <div class="col-12 text-center" data-aos="fade-up">
+            <h5 class="mb-3">Langues</h5>
+            <div class="d-flex justify-content-center gap-4 flex-wrap">
+                <div class="text-center">
+                    <div class="badge bg-primary fs-6 px-3 py-2 mb-2">Français</div>
+                    <div class="small text-muted">Niveau B2</div>
+                </div>
+                <div class="text-center">
+                    <div class="badge bg-success fs-6 px-3 py-2 mb-2">Anglais</div>
+                    <div class="small text-muted">Niveau B1</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Media -->
+    <div class="text-center mt-4">
+        <h5 class="mb-4">Réseaux Professionnels</h5>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="https://www.linkedin.com/in/ezechiel-a%C3%AFssah-880b50252/"
+                class="social-icon bg-primary text-white" target="_blank" rel="noopener noreferrer"
+                data-bs-toggle="tooltip" title="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="#" class="social-icon bg-dark text-white" target="_blank" data-bs-toggle="tooltip" title="GitHub">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:makla.aissah@reseau.eseo.fr" class="social-icon bg-danger text-white"
+                data-bs-toggle="tooltip" title="Email">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </div>
+    </div>
+    </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2024 Aïssah Makla Ezechiel. Portfolio étudiant - ESEO Angers.</p>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Projects Modal -->
+    <div class="modal fade" id="projectsModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tous Mes Projets ESEO</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6>Cloud Computing DataCenter</h6>
+                                    <p class="small text-muted">Infrastructure complète avec supervision</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h6>Sécurité Réseaux Azure</h6>
+                                    <p class="small text-muted">Déploiement sécurisé sur cloud</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project Detail Modal -->
+    <div class="modal fade" id="projectModal1" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Projet Cloud Computing - DataCenter</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='300' viewBox='0 0 800 300'%3E%3Cdefs%3E%3ClinearGradient id='modalGrad' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' style='stop-color:%23007bff;stop-opacity:1' /%3E%3Cstop offset='100%25' style='stop-color:%2320c997;stop-opacity:1' /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='300' fill='url(%23modalGrad)'/%3E%3Ctext x='400' y='150' text-anchor='middle' fill='white' font-size='20'%3ETransformation PC en DataCenter%3C/text%3E%3C/svg%3E"
+                        class="img-fluid mb-3" alt="Cloud Project">
+                    <p><strong>Objectif :</strong> Transformer les PC d'une salle informatique en infrastructure
+                        DataCenter complète.</p>
+                    <h6>Technologies et outils utilisés :</h6>
+                    <ul>
+                        <li><strong>Vagrant :</strong> Déploiement automatisé des machines virtuelles</li>
+                        <li><strong>Ansible :</strong> Configuration et gestion automatisée</li>
+                        <li><strong>LAMP Stack :</strong> Services web (Linux, Apache, MySQL, PHP)</li>
+                        <li><strong>Tomcat :</strong> Serveur d'applications Java</li>
+                        <li><strong>Zabbix :</strong> Supervision et monitoring de l'infrastructure</li>
+                        <li><strong>OPNsense :</strong> Firewall et sécurisation réseau</li>
+                        <li><strong>Load Balancer :</strong> Répartition de charge et haute disponibilité</li>
+                    </ul>
+                    <p><strong>Période :</strong> Janvier à Juillet 2025</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Toast -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="successToast" class="toast" role="alert">
+            <div class="toast-header bg-success text-white">
+                <i class="fas fa-check-circle me-2"></i>
+                <strong class="me-auto">Succès</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body">
+                Votre message a été envoyé avec succès ! Je vous répondrai bientôt.
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="btn btn-primary position-fixed bottom-0 end-0 m-4 rounded-circle"
+        style="display: none; z-index: 1000;">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1200,
+            once: true,
+            easing: 'ease-out-cubic'
+        });
+
+        // Initialize tooltips
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        const tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+
+        // Matrix background effect
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+        const matrixArray = matrix.split("");
+
+        const fontSize = 10;
+        const columns = canvas.width / fontSize;
+
+        const drops = [];
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0F3';
+            ctx.font = fontSize + 'px arial';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 35);
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar-custom');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Typing animation
+        const texts = ['Étudiant Ingénieur Cybersécurité', 'Ingénieur cloud', 'Passionné de Sécurité Réseau', 'Technicien en environnements virtualisés'];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingElement = document.getElementById('typing-text');
+
+        function typeText() {
+            const currentText = texts[textIndex];
+
+            if (isDeleting) {
+                typingElement.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingElement.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typeSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentText.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                typeSpeed = 500;
+            }
+
+            setTimeout(typeText, typeSpeed);
+        }
+
+        typeText();
+
+// Animated counters
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const increment = target / 100;
+                let current = 0;
+                
+                const updateCounter = () => {
+                    if (current < target) {
+                        current += increment;
+                        counter.textContent = Math.ceil(current);
+                        setTimeout(updateCounter, 20);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+                
+                updateCounter();
+            });
+        }
+
+        // Trigger counter animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.querySelector('.counter').closest('section');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+
+        // Contact form validation and submission
+        const contactForm = document.getElementById('contactForm');
+        const successToast = new bootstrap.Toast(document.getElementById('successToast'));
+
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            if (contactForm.checkValidity()) {
+                // Simulate form submission
+                setTimeout(() => {
+                    successToast.show();
+                    contactForm.reset();
+                    contactForm.classList.remove('was-validated');
+                }, 500);
+            }
+            
+            contactForm.classList.add('was-validated');
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.querySelector('.hero-particles');
+            const particleCount = 80;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.width = Math.random() * 15 + 5 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // Resize canvas on window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+
+    </script>
+   </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99296fd1b56550f9',t:'MTc2MTE0MDc0NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
