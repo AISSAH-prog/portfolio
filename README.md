@@ -1,4 +1,4 @@
-# 💼 Portfolio – Ezbeta
+# 💼 Portfolio – Ezéchiel AISSAH
 
 Bienvenue sur mon portfolio !  
 Ce site présente mon parcours, mes projets et mes compétences dans le domaine de l’informatique, de la cybersécurité et du développement.
