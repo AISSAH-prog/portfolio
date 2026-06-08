@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aïssah Makla Ezechiel — Ingénieur Cybersécurité & Cloud</title>
+    <meta name="description" content="Portfolio d'Aïssah Makla Ezechiel, étudiant ingénieur en cybersécurité et cloud computing à l'ESEO Angers. Spécialisé en sécurité réseau, DevOps et Azure.">
+    <meta name="keywords" content="cybersécurité, cloud computing, ingénieur, ESEO, Azure, Ansible, Vagrant, Python, Java, stage">
+    <meta name="author" content="Aïssah Makla Ezechiel">
+    <meta name="robots" content="index, follow">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Aïssah Makla Ezechiel — Portfolio Cybersécurité & Cloud">
+    <meta property="og:description" content="Étudiant ingénieur en cybersécurité et cloud computing à l'ESEO Angers. Découvrez mes projets, expériences et compétences.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="potofolio.jpg">
+    <meta property="og:locale" content="fr_FR">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Aïssah Makla Ezechiel — Portfolio">
+    <meta name="twitter:description" content="Ingénieur cybersécurité & cloud | ESEO Angers">
+    <meta name="twitter:image" content="potofolio.jpg">
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Aïssah Makla Ezechiel",
+      "jobTitle": "Étudiant Ingénieur Cybersécurité & Cloud",
+      "affiliation": { "@type": "Organization", "name": "ESEO Angers" },
+      "email": "makla.aissah@reseau.eseo.fr",
+      "telephone": "+33764395863",
+      "address": { "@type": "PostalAddress", "addressLocality": "Angers", "postalCode": "49100", "addressCountry": "FR" },
+      "url": "https://aissah-prog.github.io/portfolio/"
+    }
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        /* ── CSS Variables & Dark Mode ── */
+        :root {
+            --primary: #dc3545;
+            --secondary: #6f42c1;
+            --accent: #20c997;
+            --navbar-h: 70px;
+            --bg: #ffffff;
+            --bg-alt: #f8f9fa;
+            --card-bg: #ffffff;
+            --text: #212529;
+            --text-muted: #6c757d;
+            --border: rgba(0,0,0,.1);
+            --shadow: rgba(0,0,0,.08);
+            --shadow-hover: rgba(0,0,0,.18);
+        }
+        [data-theme="dark"] {
+            --bg: #0d1117;
+            --bg-alt: #161b22;
+            --card-bg: #21262d;
+            --text: #e6edf3;
+            --text-muted: #8b949e;
+            --border: rgba(255,255,255,.08);
+            --shadow: rgba(0,0,0,.4);
+            --shadow-hover: rgba(0,0,0,.6);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            padding-top: var(--navbar-h);
+            background: var(--bg);
+            color: var(--text);
+            transition: background .35s ease, color .35s ease;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        section { scroll-margin-top: calc(var(--navbar-h) + 10px); }
+
+        /* ── Navbar ── */
+        .navbar-custom {
+            height: var(--navbar-h);
+            background: rgba(255,255,255,.95) !important;
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            transition: all .3s ease;
+        }
+        [data-theme="dark"] .navbar-custom {
+            background: rgba(13,17,23,.95) !important;
+        }
+        .navbar-scrolled { box-shadow: 0 4px 30px var(--shadow); }
+
+        /* Dark mode toggle */
+        .dark-toggle {
+            width: 46px; height: 26px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 13px;
+            position: relative;
+            cursor: pointer;
+            border: none;
+            transition: background .4s;
+            flex-shrink: 0;
+        }
+        .dark-toggle::after {
+            content: '';
+            position: absolute;
+            top: 3px; left: 3px;
+            width: 20px; height: 20px;
+            background: #fff;
+            border-radius: 50%;
+            transition: transform .35s cubic-bezier(.68,-.55,.27,1.55);
+            box-shadow: 0 1px 4px rgba(0,0,0,.3);
+        }
+        [data-theme="dark"] .dark-toggle::after { transform: translateX(20px); }
+        .dark-icon { font-size: .75rem; }
+
+        /* ── Hero ── */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+            animation: gradientShift 12s ease-in-out infinite;
+        }
+        @keyframes gradientShift {
+            0%,100% { background: linear-gradient(135deg, #dc3545 0%, #6f42c1 100%); }
+            33%  { background: linear-gradient(135deg, #6f42c1 0%, #20c997 100%); }
+            66%  { background: linear-gradient(135deg, #20c997 0%, #dc3545 100%); }
+        }
+        .hero-particles { position: absolute; width: 100%; height: 100%; overflow: hidden; pointer-events: none; }
+        .particle {
+            position: absolute;
+            background: rgba(255,255,255,.12);
+            border-radius: 50%;
+            animation: floatP 7s ease-in-out infinite;
+        }
+        @keyframes floatP {
+            0%,100% { transform: translateY(0) rotate(0deg); opacity:.3; }
+            50%      { transform: translateY(-35px) rotate(180deg); opacity:.9; }
+        }
+
+        /* Profile photo ring */
+        .profile-ring {
+            display: inline-block;
+            border-radius: 50%;
+            padding: 4px;
+            background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,.4) 100%);
+            box-shadow: 0 0 0 3px rgba(255,255,255,.3), 0 20px 40px rgba(0,0,0,.25);
+            animation: ringPulse 3s ease-in-out infinite;
+        }
+        @keyframes ringPulse {
+            0%,100% { box-shadow: 0 0 0 3px rgba(255,255,255,.3), 0 20px 40px rgba(0,0,0,.25); }
+            50%      { box-shadow: 0 0 0 8px rgba(255,255,255,.15), 0 20px 40px rgba(0,0,0,.3); }
+        }
+        .profile-photo {
+            width: 160px; height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            display: block;
+        }
+        @media(min-width:992px){ .profile-photo { width: 190px; height: 190px; } }
+
+        /* Typing */
+        .typing-animation { border-right: 3px solid white; animation: blink 1s infinite; padding-right: 2px; }
+        @keyframes blink {
+            0%,50%  { border-color: white; }
+            51%,100%{ border-color: transparent; }
+        }
+
+        /* ── Stats ── */
+        .stats-section { background: var(--bg-alt); }
+        .stat-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            border: 1px solid var(--border);
+            transition: all .4s cubic-bezier(.175,.885,.32,1.275);
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+        .stat-card:hover { transform: translateY(-8px) scale(1.04); box-shadow: 0 16px 40px var(--shadow-hover); }
+        .counter {
+            font-size: 3.5rem; font-weight: 800;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            line-height: 1;
+        }
+        .stat-label { color: var(--text-muted); margin-top: .4rem; font-weight: 500; }
+
+        /* ── Section headings ── */
+        .section-heading { font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 800; color: var(--text); }
+        .section-lead { color: var(--text-muted); font-size: 1.1rem; }
+        .heading-line {
+            width: 60px; height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+            margin: .75rem auto 0;
+        }
+
+        /* ── About ── */
+        .about-section { background: var(--bg); }
+        .accordion-item { background: var(--card-bg) !important; border-color: var(--border) !important; }
+        .accordion-button { background: var(--card-bg) !important; color: var(--text) !important; box-shadow: none !important; }
+        .accordion-button:not(.collapsed) { color: var(--primary) !important; }
+        .accordion-body { background: var(--card-bg); color: var(--text); }
+
+        /* ── Experience ── */
+        .experience-section { background: var(--bg-alt); }
+        .experience-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-left: 5px solid var(--primary);
+            border-radius: 16px;
+            transition: all .4s cubic-bezier(.175,.885,.32,1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        .experience-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity .4s;
+            z-index: 0;
+        }
+        .experience-card:hover::after { opacity: .04; }
+        .experience-card:hover { transform: translateY(-6px) translateX(4px); box-shadow: 0 20px 50px var(--shadow-hover); }
+        .experience-card .card-body { position: relative; z-index: 1; }
+        .exp-icon {
+            width: 58px; height: 58px; border-radius: 14px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.4rem; flex-shrink: 0;
+            box-shadow: 0 8px 20px rgba(220,53,69,.3);
+        }
+        .exp-tag {
+            display: inline-block; padding: .2rem .7rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; border-radius: 20px; font-size: .75rem; font-weight: 600;
+        }
+
+        /* ── Projects ── */
+        .projects-section { background: var(--bg); }
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: all .4s cubic-bezier(.175,.885,.32,1.275);
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+        .project-card:hover { transform: translateY(-12px) scale(1.02); box-shadow: 0 30px 60px var(--shadow-hover); }
+        .project-img-wrap { position: relative; overflow: hidden; }
+        .project-img-wrap img { transition: transform .5s ease; display: block; width: 100%; }
+        .project-card:hover .project-img-wrap img { transform: scale(1.07); }
+        .project-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(220,53,69,.92), rgba(111,66,193,.92));
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity .4s;
+        }
+        .project-card:hover .project-overlay { opacity: 1; }
+        .project-body { padding: 1.4rem; }
+        .project-body h5 { font-weight: 700; color: var(--text); }
+        .project-body p  { color: var(--text-muted); font-size: .9rem; }
+
+        /* ── Skills ── */
+        .skills-section { background: var(--bg-alt); }
+        .skill-progress {
+            height: 10px; border-radius: 15px;
+            background: var(--border); overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%; border-radius: 15px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0;
+            transition: width 1.5s cubic-bezier(.4,0,.2,1);
+            position: relative; overflow: hidden;
+        }
+        .progress-fill::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(-45deg,
+                rgba(255,255,255,.25) 25%, transparent 25%,
+                transparent 50%, rgba(255,255,255,.25) 50%,
+                rgba(255,255,255,.25) 75%, transparent 75%);
+            background-size: 40px 40px;
+            animation: stripes 1.5s linear infinite;
+        }
+        @keyframes stripes { to { background-position: 40px 40px; } }
+        .skill-name { font-weight: 600; color: var(--text); }
+        .skill-pct  { font-weight: 700; background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+        .specialty-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            transition: all .4s cubic-bezier(.175,.885,.32,1.275);
+            box-shadow: 0 4px 16px var(--shadow);
+            position: relative; overflow: hidden;
+        }
+        .specialty-card::before {
+            content: ''; position: absolute;
+            top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.1), transparent);
+            transition: left .5s;
+        }
+        .specialty-card:hover::before { left: 100%; }
+        .specialty-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px var(--shadow-hover); }
+        .specialty-icon {
+            width: 70px; height: 70px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 1.6rem;
+            margin: 0 auto 1rem;
+            box-shadow: 0 8px 20px rgba(220,53,69,.25);
+        }
+        .specialty-card h6 { color: var(--text); font-weight: 700; }
+        .specialty-card small { color: var(--text-muted); }
+
+        /* Management skills tag cloud */
+        .skill-tag {
+            display: inline-block;
+            padding: .35rem .85rem;
+            border-radius: 20px;
+            font-size: .82rem; font-weight: 600;
+            border: 2px solid;
+            transition: all .3s;
+        }
+        .skill-tag:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 6px 16px var(--shadow-hover); }
+
+        /* ── Formation ── */
+        .formation-section { background: var(--bg); }
+        .formation-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            box-shadow: 0 8px 40px var(--shadow);
+            overflow: hidden;
+        }
+        .formation-header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 2.5rem;
+            text-align: center; color: white;
+        }
+
+        /* ── Contact ── */
+        .contact-section { background: var(--bg-alt); }
+        .contact-form {
+            background: linear-gradient(135deg, #dc3545 0%, #6f42c1 100%);
+            border-radius: 24px; padding: 2.5rem;
+            position: relative; overflow: hidden;
+            box-shadow: 0 20px 60px rgba(111,66,193,.3);
+        }
+        .contact-form::before {
+            content: '';
+            position: absolute; top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,.08) 0%, transparent 70%);
+            animation: rotateAnim 20s linear infinite;
+        }
+        @keyframes rotateAnim { to { transform: rotate(360deg); } }
+        .contact-form .form-control,
+        .contact-form .form-select {
+            background: rgba(255,255,255,.15);
+            border: 1px solid rgba(255,255,255,.3);
+            color: white;
+            border-radius: 10px;
+            backdrop-filter: blur(8px);
+            transition: border-color .3s;
+        }
+        .contact-form .form-control::placeholder { color: rgba(255,255,255,.6); }
+        .contact-form .form-control:focus,
+        .contact-form .form-select:focus {
+            background: rgba(255,255,255,.2);
+            border-color: rgba(255,255,255,.7);
+            box-shadow: 0 0 0 3px rgba(255,255,255,.15);
+            color: white;
+        }
+        .contact-form .form-select option { color: #212529; background: white; }
+        .contact-info-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: all .3s;
+            box-shadow: 0 4px 16px var(--shadow);
+        }
+        .contact-info-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px var(--shadow-hover); }
+
+        /* Social icons */
+        .social-icon {
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; color: white;
+            transition: all .4s cubic-bezier(.175,.885,.32,1.275);
+            position: relative; overflow: hidden;
+        }
+        .social-icon::before {
+            content: '';
+            position: absolute; top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,.3), transparent);
+            transition: left .5s;
+        }
+        .social-icon:hover::before { left: 100%; }
+        .social-icon:hover { transform: translateY(-6px) scale(1.15) rotate(5deg); box-shadow: 0 12px 25px var(--shadow-hover); }
+
+        /* ── Footer ── */
+        footer { background: #0d1117 !important; }
+
+        /* ── Back to top ── */
+        #backToTop {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            color: white;
+            display: none;
+            position: fixed;
+            bottom: 1.5rem; right: 1.5rem;
+            z-index: 1050;
+            box-shadow: 0 4px 20px rgba(220,53,69,.4);
+            transition: all .3s;
+        }
+        #backToTop:hover { transform: scale(1.1) translateY(-3px); }
+
+        /* ── Matrix canvas ── */
+        .matrix-bg {
+            position: fixed; inset: 0;
+            pointer-events: none; z-index: -1;
+            opacity: .025;
+        }
+        [data-theme="dark"] .matrix-bg { opacity: .04; }
+
+        /* ── Modal dark ── */
+        [data-theme="dark"] .modal-content { background: var(--card-bg); color: var(--text); }
+        [data-theme="dark"] .modal-header { border-color: var(--border); }
+        [data-theme="dark"] .modal-footer { border-color: var(--border); }
+        [data-theme="dark"] .btn-close { filter: invert(1); }
+
+        /* ── Glitch ── */
+        .glitch { animation: glitch 3s infinite; }
+        @keyframes glitch {
+            0%,90%,100% { transform: translate(0); }
+            92% { transform: translate(-2px, 2px); }
+            94% { transform: translate(2px, -2px); }
+            96% { transform: translate(-2px, -2px); }
+            98% { transform: translate(2px, 2px); }
+        }
+
+        /* ── Pulse marker ── */
+        .timeline-marker {
+            display: inline-block; width: 14px; height: 14px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            animation: pulseDot 2s infinite;
+            vertical-align: middle; margin-right: .5rem;
+        }
+        @keyframes pulseDot {
+            0%   { box-shadow: 0 0 0 0 rgba(220,53,69,.7); }
+            70%  { box-shadow: 0 0 0 8px rgba(220,53,69,0); }
+            100% { box-shadow: 0 0 0 0 rgba(220,53,69,0); }
+        }
+
+        /* General card dark */
+        [data-theme="dark"] .card { background: var(--card-bg) !important; border-color: var(--border) !important; color: var(--text) !important; }
+        [data-theme="dark"] .bg-light { background: var(--bg-alt) !important; }
+        [data-theme="dark"] .text-muted { color: var(--text-muted) !important; }
+        [data-theme="dark"] .bg-white { background: var(--card-bg) !important; }
+        [data-theme="dark"] .navbar-light .navbar-nav .nav-link { color: var(--text) !important; }
+        [data-theme="dark"] .navbar-light .navbar-brand { color: var(--primary) !important; }
+        [data-theme="dark"] .navbar-toggler-icon { filter: invert(1); }
+
+        /* CV button glow */
+        .btn-cv {
+            background: white;
+            color: var(--primary);
+            border: 2px solid white;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+            transition: all .35s cubic-bezier(.175,.885,.32,1.275);
+        }
+        .btn-cv:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255,255,255,.25);
+        }
+
+        /* Smooth transitions for all sections */
+        .py-5 { transition: background .35s ease; }
+    </style>
+</head>
+
+<body>
+    <canvas class="matrix-bg" id="matrix"></canvas>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3 text-primary glitch" href="#home">
+                <i class="fas fa-shield-alt me-2"></i>AME
+            </a>
+            <div class="d-flex align-items-center gap-2 ms-auto">
+                <!-- Dark mode toggle -->
+                <div class="d-flex align-items-center gap-2 me-2">
+                    <i class="fas fa-sun dark-icon text-warning"></i>
+                    <button class="dark-toggle" id="darkToggle" aria-label="Basculer mode sombre" title="Mode sombre"></button>
+                    <i class="fas fa-moon dark-icon" style="color:var(--secondary)"></i>
+                </div>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="#home">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="#about">À Propos</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="#experience">Expérience</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="#projects">Projets</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="#skills">Compétences</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="#formation">Formation</a></li>
+                    <li class="nav-item"><a class="nav-link fw-semibold" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section d-flex align-items-center text-white">
+        <div class="hero-particles" id="heroParticles"></div>
+        <div class="container text-center position-relative" style="z-index:2">
+            <div class="row justify-content-center">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <div class="mb-4">
+                        <div class="profile-ring d-inline-block">
+                            <img src="potofolio.jpg" alt="Ezéchiel Aïssah — Photo de profil" class="profile-photo">
+                        </div>
+                    </div>
+                    <h1 class="display-3 fw-bold mb-3" data-aos="fade-up" data-aos-delay="150">
+                        Aïssah Makla Ezechiel
+                    </h1>
+                    <h2 class="h3 mb-4 fw-light" data-aos="fade-up" data-aos-delay="300">
+                        <span id="typing-text" class="typing-animation">Étudiant Ingénieur Cybersécurité</span>
+                    </h2>
+                    <p class="lead mb-5 opacity-90" data-aos="fade-up" data-aos-delay="450">
+                        Passionné de cybersécurité, cloud computing et gestion de projet — étudiant en 3<sup>e</sup> année à l'ESEO Angers
+                    </p>
+                    <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center" data-aos="fade-up" data-aos-delay="600">
+                        <a href="#projects" class="btn btn-light btn-lg px-5 rounded-pill fw-semibold">
+                            <i class="fas fa-eye me-2"></i>Mes Projets
+                        </a>
+                        <a href="cv-aissah-makla-ezechiel.pdf" download class="btn btn-cv btn-lg px-5 rounded-pill">
+                            <i class="fas fa-download me-2"></i>Télécharger CV
+                        </a>
+                        <a href="#contact" class="btn btn-outline-light btn-lg px-5 rounded-pill">
+                            <i class="fas fa-envelope me-2"></i>Me Contacter
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Scroll indicator -->
+        <div class="position-absolute bottom-0 start-50 translate-middle-x mb-4" style="z-index:2">
+            <a href="#stats" class="text-white opacity-75" style="text-decoration:none">
+                <div style="animation: bounce 2s infinite">
+                    <i class="fas fa-chevron-down fa-lg"></i>
+                </div>
+            </a>
+        </div>
+    </section>
+    <style>
+        @keyframes bounce {
+            0%,100%{ transform: translateY(0); }
+            50%     { transform: translateY(8px); }
+        }
+    </style>
+
+    <!-- Stats Section -->
+    <section id="stats" class="py-5 stats-section">
+        <div class="container">
+            <div class="row g-4 text-center">
+                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-card">
+                        <div class="counter" data-target="6">0</div>
+                        <div class="stat-label">Projets Réalisés</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-card">
+                        <div class="counter" data-target="3">0</div>
+                        <div class="stat-label">Années d'Études</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-card">
+                        <div class="counter" data-target="3">0</div>
+                        <div class="stat-label">Stages Effectués</div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-card">
+                        <div class="counter" data-target="12">0</div>
+                        <div class="stat-label">Technologies Maîtrisées</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 about-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-heading">À Propos de Moi</h2>
+                <div class="heading-line"></div>
+            </div>
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5" data-aos="fade-right">
+                    <div class="position-relative text-center">
+                        <div style="background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 24px; padding: 3rem 2rem;">
+                            <i class="fas fa-user-circle fa-6x text-white opacity-75 mb-3"></i>
+                            <h4 class="text-white fw-bold">Aïssah Makla Ezechiel</h4>
+                            <p class="text-white opacity-90 mb-0">Ingénieur Cybersécurité &amp; Cloud</p>
+                            <hr style="border-color:rgba(255,255,255,.3)">
+                            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                                <span class="badge bg-white text-primary fw-semibold px-3 py-2"><i class="fas fa-map-marker-alt me-1"></i>Angers, France</span>
+                                <span class="badge bg-white text-success fw-semibold px-3 py-2"><i class="fas fa-graduation-cap me-1"></i>ESEO 3A</span>
+                                <span class="badge bg-white fw-semibold px-3 py-2" style="color:var(--secondary)"><i class="fas fa-briefcase me-1"></i>Open to Stage</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7" data-aos="fade-left">
+                    <p class="lead mb-4" style="color:var(--text)">
+                        Étudiant passionné en 3<sup>e</sup> année de cycle ingénieur à l'ESEO, spécialisé en
+                        <strong>cybersécurité</strong>, <strong>cloud computing</strong> et <strong>gestion de projet</strong>.
+                        À la recherche d'un stage de 6 mois à partir de février 2026.
+                    </p>
+                    <div class="accordion" id="aboutAccordion">
+                        <div class="accordion-item rounded mb-2 border">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                    <i class="fas fa-graduation-cap me-2 text-primary"></i>Formation Actuelle
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#aboutAccordion">
+                                <div class="accordion-body">
+                                    <strong>ESEO — École Supérieure d'Électronique de l'Ouest</strong><br>
+                                    Cycle Ingénieur — 3<sup>e</sup> année<br>
+                                    Spécialisation : Cloud, Systèmes &amp; Cybersécurité
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item rounded mb-2 border">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                    <i class="fas fa-shield-alt me-2 text-danger"></i>Spécialisations
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#aboutAccordion">
+                                <div class="accordion-body">
+                                    <span class="timeline-marker"></span>Cybersécurité et détection d'intrusions<br>
+                                    <span class="timeline-marker"></span>Cloud Computing et virtualisation<br>
+                                    <span class="timeline-marker"></span>Sécurité des réseaux et infrastructures<br>
+                                    <span class="timeline-marker"></span>Développement sécurisé
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item rounded border">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed rounded" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                    <i class="fas fa-users me-2 text-success"></i>Engagements
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#aboutAccordion">
+                                <div class="accordion-body">
+                                    <strong>Président du Club Afrique</strong> — Promotion de la culture africaine<br>
+                                    <strong>Membre du Club Musique</strong> — Activités artistiques et culturelles
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-5 experience-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-heading">Expérience Professionnelle</h2>
+                <div class="heading-line"></div>
+                <p class="section-lead mt-2">Mon parcours professionnel et mes stages</p>
+            </div>
+            <div class="row g-4">
+                <!-- Predell -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="50">
+                    <div class="card experience-card h-100 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3 gap-3">
+                                <div class="exp-icon" style="background: linear-gradient(135deg, #28a745, #20c997)">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1" style="color:var(--text)">Gestion & Management</h5>
+                                    <p class="mb-0" style="color:var(--text-muted); font-size:.9rem">Predell</p>
+                                    <span class="exp-tag" style="background: linear-gradient(135deg, #28a745, #20c997)">Gestion</span>
+                                </div>
+                            </div>
+                            <ul class="list-unstyled mb-0" style="color:var(--text)">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Coordination et planification de projets</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Gestion d'équipe et communication interne</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Suivi des indicateurs de performance (KPI)</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Rédaction de rapports et supports de présentation</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Gestion administrative et organisation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- FAGACE -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="150">
+                    <div class="card experience-card h-100 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3 gap-3">
+                                <div class="exp-icon">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1" style="color:var(--text)">Stagiaire en Cybersécurité</h5>
+                                    <p class="mb-0" style="color:var(--text-muted); font-size:.9rem">FAGACE, Cotonou — Bénin</p>
+                                    <span class="exp-tag">Juil. — Nov. 2024</span>
+                                </div>
+                            </div>
+                            <ul class="list-unstyled mb-0" style="color:var(--text)">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Configuration de systèmes de détection d'intrusion (IDS)</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Mise en œuvre en environnement virtualisé</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Analyse de sécurité des infrastructures réseau</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Rédaction de rapports d'audit de sécurité</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cour Lumière -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="250">
+                    <div class="card experience-card h-100 shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="d-flex align-items-center mb-3 gap-3">
+                                <div class="exp-icon" style="background: linear-gradient(135deg, #6f42c1, #007bff)">
+                                    <i class="fas fa-desktop"></i>
+                                </div>
+                                <div>
+                                    <h5 class="mb-1" style="color:var(--text)">Assistant Bureautique</h5>
+                                    <p class="mb-0" style="color:var(--text-muted); font-size:.9rem">Cour Lumière, Lomé — Togo</p>
+                                    <span class="exp-tag" style="background: linear-gradient(135deg, #6f42c1, #007bff)">Juil. — Août 2022</span>
+                                </div>
+                            </div>
+                            <ul class="list-unstyled mb-0" style="color:var(--text)">
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Intervention sur équipements d'accès réseau</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-success me-2"></i>Support technique utilisateurs</li>
+                                <li><i class="fas fa-check-circle text-success me-2"></i>Maintenance des systèmes informatiques</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-5 projects-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-heading">Projets Académiques</h2>
+                <div class="heading-line"></div>
+                <p class="section-lead mt-2">Mes réalisations techniques à l'ESEO</p>
+            </div>
+            <div class="row g-4">
+                <!-- Projet 1 -->
+                <div class="col-lg-6 col-xl-3" data-aos="fade-up" data-aos-delay="0">
+                    <div class="project-card h-100">
+                        <div class="project-img-wrap">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'%3E%3Cdefs%3E%3ClinearGradient id='p1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23007bff'/%3E%3Cstop offset='1' stop-color='%2320c997'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='220' fill='url(%23p1)'/%3E%3Ccircle cx='200' cy='110' r='55' fill='rgba(255,255,255,.15)'/%3E%3Cpath d='M175 90h50v10h-50zm-10 15h70v8h-70zm5 13h60v8h-60zm10 13h40v8h-40z' fill='rgba(255,255,255,.7)'/%3E%3C/svg%3E"
+                                alt="Cloud Computing DataCenter" class="w-100" style="height:200px;object-fit:cover">
+                            <div class="project-overlay">
+                                <button class="btn btn-light rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#projectModal1">
+                                    <i class="fas fa-eye me-2"></i>Détails
+                                </button>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <h5>Projet Cloud Computing</h5>
+                            <p>Transformation d'une salle PC en DataCenter avec déploiement automatisé et supervision.</p>
+                            <div class="d-flex flex-wrap gap-1 mb-3">
+                                <span class="badge bg-primary">Vagrant</span>
+                                <span class="badge bg-success">Ansible</span>
+                                <span class="badge bg-info">Zabbix</span>
+                                <span class="badge bg-warning text-dark">OPNsense</span>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <small style="color:var(--text-muted)"><i class="far fa-calendar me-1"></i>Jan — Juil 2025</small>
+                                <button class="btn btn-sm btn-outline-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#projectModal1">Voir plus</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Projet 2 -->
+                <div class="col-lg-6 col-xl-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="project-card h-100">
+                        <div class="project-img-wrap">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'%3E%3Cdefs%3E%3ClinearGradient id='p2' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2328a745'/%3E%3Cstop offset='1' stop-color='%236f42c1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='220' fill='url(%23p2)'/%3E%3Crect x='100' y='60' width='200' height='110' rx='8' fill='rgba(255,255,255,.15)'/%3E%3Cpath d='M115 80h170v10H115zm0 18h130v8H115zm0 14h150v8H115zm0 14h100v8H115z' fill='rgba(255,255,255,.7)'/%3E%3C/svg%3E"
+                                alt="InfraLogiciel" class="w-100" style="height:200px;object-fit:cover">
+                            <div class="project-overlay">
+                                <button class="btn btn-light rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#projectModal2">
+                                    <i class="fas fa-eye me-2"></i>Détails
+                                </button>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <h5>Projet InfraLogiciel</h5>
+                            <p>Infrastructure pour application web avec automatisation de déploiement et CI/CD.</p>
+                            <div class="d-flex flex-wrap gap-1 mb-3">
+                                <span class="badge bg-primary">Vagrant</span>
+                                <span class="badge bg-secondary">Infrastructure</span>
+                                <span class="badge bg-info">Collaboration</span>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <small style="color:var(--text-muted)"><i class="far fa-calendar me-1"></i>Déc 2024 — Jan 2025</small>
+                                <button class="btn btn-sm btn-outline-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#projectModal2">Voir plus</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Projet 3 -->
+                <div class="col-lg-6 col-xl-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="project-card h-100">
+                        <div class="project-img-wrap">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'%3E%3Cdefs%3E%3ClinearGradient id='p3' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23dc3545'/%3E%3Cstop offset='1' stop-color='%23ffc107'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='220' fill='url(%23p3)'/%3E%3Ccircle cx='120' cy='100' r='35' fill='rgba(255,255,255,.15)'/%3E%3Ccircle cx='250' cy='80' r='25' fill='rgba(255,255,255,.2)'/%3E%3Ccircle cx='320' cy='130' r='20' fill='rgba(255,255,255,.12)'/%3E%3Cline x1='155' y1='100' x2='225' y2='80' stroke='rgba(255,255,255,.5)' stroke-width='2'/%3E%3Cline x1='275' y1='80' x2='300' y2='130' stroke='rgba(255,255,255,.5)' stroke-width='2'/%3E%3C/svg%3E"
+                                alt="Réseau Social Web" class="w-100" style="height:200px;object-fit:cover">
+                            <div class="project-overlay">
+                                <button class="btn btn-light rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#projectModal3">
+                                    <i class="fas fa-eye me-2"></i>Détails
+                                </button>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <h5>Réseau Social Web</h5>
+                            <p>Conception et développement d'un réseau social complet avec authentification et base de données.</p>
+                            <div class="d-flex flex-wrap gap-1 mb-3">
+                                <span class="badge bg-warning text-dark">HTML/CSS</span>
+                                <span class="badge bg-primary">PHP</span>
+                                <span class="badge bg-success">JavaScript</span>
+                                <span class="badge bg-info">MySQL</span>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <small style="color:var(--text-muted)"><i class="far fa-calendar me-1"></i>Mai — Juin 2024</small>
+                                <button class="btn btn-sm btn-outline-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#projectModal3">Voir plus</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Projet 4 -->
+                <div class="col-lg-6 col-xl-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-card h-100">
+                        <div class="project-img-wrap">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='220' viewBox='0 0 400 220'%3E%3Cdefs%3E%3ClinearGradient id='p4' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%236f42c1'/%3E%3Cstop offset='1' stop-color='%23007bff'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='220' fill='url(%23p4)'/%3E%3Cpath d='M80 160 L200 60 L320 160 Z' fill='rgba(255,255,255,.1)'/%3E%3Cpath d='M130 160 L200 100 L270 160 Z' fill='rgba(255,255,255,.15)'/%3E%3Ccircle cx='200' cy='60' r='12' fill='rgba(255,255,255,.6)'/%3E%3Cpath d='M185 130h30v30h-30z' fill='rgba(255,255,255,.4)'/%3E%3C/svg%3E"
+                                alt="Azure Réseaux & Sécurité" class="w-100" style="height:200px;object-fit:cover">
+                            <div class="project-overlay">
+                                <button class="btn btn-light rounded-pill px-4" data-bs-toggle="modal" data-bs-target="#projectModal4">
+                                    <i class="fas fa-eye me-2"></i>Détails
+                                </button>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <h5>Infrastructures Réseaux &amp; Sécurité</h5>
+                            <p>Déploiement sur Microsoft Azure avec sécurisation avancée et chiffrement GPG.</p>
+                            <div class="d-flex flex-wrap gap-1 mb-3">
+                                <span class="badge bg-primary">Microsoft Azure</span>
+                                <span class="badge bg-warning text-dark">Apache2</span>
+                                <span class="badge bg-success">MySQL</span>
+                                <span class="badge bg-danger">GPG</span>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-between">
+                                <small style="color:var(--text-muted)"><i class="far fa-calendar me-1"></i>Oct — Nov 2023</small>
+                                <button class="btn btn-sm btn-outline-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#projectModal4">Voir plus</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-5 skills-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-heading">Compétences Techniques</h2>
+                <div class="heading-line"></div>
+                <p class="section-lead mt-2">Technologies, outils et savoir-faire acquis</p>
+            </div>
+
+            <!-- Progress bars -->
+            <div class="row g-5 mb-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h4 class="fw-bold mb-4" style="color:var(--text)">
+                        <i class="fas fa-code me-2 text-primary"></i>Langages de Programmation
+                    </h4>
+                    <div id="skillBars1">
+                        <div class="mb-4" data-skill="85">
+                            <div class="d-flex justify-content-between mb-2"><span class="skill-name">Java</span><span class="skill-pct">85%</span></div>
+                            <div class="skill-progress"><div class="progress-fill" style="width:0%"></div></div>
+                        </div>
+                        <div class="mb-4" data-skill="80">
+                            <div class="d-flex justify-content-between mb-2"><span class="skill-name">Python</span><span class="skill-pct">80%</span></div>
+                            <div class="skill-progress"><div class="progress-fill" style="width:0%"></div></div>
+                        </div>
+                        <div class="mb-4" data-skill="75">
+                            <div class="d-flex justify-content-between mb-2"><span class="skill-name">C</span><span class="skill-pct">75%</span></div>
+                            <div class="skill-progress"><div class="progress-fill" style="width:0%"></div></div>
+                        </div>
+                        <div class="mb-4" data-skill="72">
+                            <div class="d-flex justify-content-between mb-2"><span class="skill-name">PHP / JavaScript</span><span class="skill-pct">72%</span></div>
+                            <div class="skill-progress"><div class="progress-fill" style="width:0%"></div></div>
+                        </div>
+                        <div class="mb-4" data-skill="68">
+                            <div class="d-flex justify-content-between mb-2"><span class="skill-name">XML / SQL</span><span class="skill-pct">68%</span></div>
+                            <div class="skill-progress"><div class="progress-fill" style="width:0%"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <h4 class="fw-bold mb-4" style="color:var(--text)">
+                        <i class="fas fa-tools me-2 text-primary"></i>Outils &amp; Technologies
+                    </h4>
+                    <div id="skillBars2">
+                        <div class="mb-4" data-skill="90">
+                            <div class="d-flex justify-content-between mb-2"><span class="skill-name">GitHub / Git</span><span class="skill-pct">90%</span></div>
+                            <div class="skill-progress"><div class="progress-fill" style="width:0%"></div></div>
+                        </div>
+                        <div class="mb-4" data-skill="85">
+                            <div class="d-flex justify-content-between mb-2"><span class="skill-name">Ansible / Vagrant</span><span class="skill-pct">85%</span></div>
+                            <div class="skill-progress"><div class="progress-fill" style="width:0%"></div></div>
+                        </div>
+                        <div class="mb-4" data-skill="82">
+                            <div class="d-flex justify-content-between mb-2"><span class="skill-name">Cisco Packet Tracer</span><span class="skill-pct">82%</span></div>
+                            <div class="skill-progress"><div class="progress-fill" style="width:0%"></div></div>
+                        </div>
+                        <div class="mb-4" data-skill="78">
+                            <div class="d-flex justify-content-between mb-2"><span class="skill-name">Microsoft Azure</span><span class="skill-pct">78%</span></div>
+                            <div class="skill-progress"><div class="progress-fill" style="width:0%"></div></div>
+                        </div>
+                        <div class="mb-4" data-skill="70">
+                            <div class="d-flex justify-content-between mb-2"><span class="skill-name">STM32 / Blender</span><span class="skill-pct">70%</span></div>
+                            <div class="skill-progress"><div class="progress-fill" style="width:0%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Specialty cards -->
+            <div class="row g-3" data-aos="fade-up">
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="specialty-card">
+                        <div class="specialty-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h6>Cybersécurité</h6>
+                        <small>IDS, Firewall, Audit</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="specialty-card">
+                        <div class="specialty-icon" style="background:linear-gradient(135deg,#007bff,#20c997)"><i class="fas fa-cloud"></i></div>
+                        <h6>Cloud Computing</h6>
+                        <small>Azure, Virtualisation</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="specialty-card">
+                        <div class="specialty-icon" style="background:linear-gradient(135deg,#28a745,#20c997)"><i class="fas fa-server"></i></div>
+                        <h6>DevOps</h6>
+                        <small>Ansible, Vagrant, CI/CD</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="specialty-card">
+                        <div class="specialty-icon" style="background:linear-gradient(135deg,#6f42c1,#007bff)"><i class="fas fa-project-diagram"></i></div>
+                        <h6>Modélisation UML</h6>
+                        <small>Conception système</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="specialty-card">
+                        <div class="specialty-icon" style="background:linear-gradient(135deg,#ffc107,#dc3545)"><i class="fas fa-chart-bar"></i></div>
+                        <h6>Gestion Projet</h6>
+                        <small>KPI, Planning, Rapports</small>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-2">
+                    <div class="specialty-card">
+                        <div class="specialty-icon" style="background:linear-gradient(135deg,#20c997,#007bff)"><i class="fas fa-vial"></i></div>
+                        <h6>Tests Logiciels</h6>
+                        <small>JUnit, Validation</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Management skills from Predell -->
+            <div class="mt-5 p-4 rounded-4 border" style="background:var(--card-bg); border-color:var(--border)!important" data-aos="fade-up">
+                <h5 class="fw-bold mb-3" style="color:var(--text)">
+                    <i class="fas fa-briefcase me-2 text-success"></i>Compétences en Gestion — Expérience Predell
+                </h5>
+                <div class="d-flex flex-wrap gap-2">
+                    <span class="skill-tag" style="color:#28a745;border-color:#28a745">Gestion d'équipe</span>
+                    <span class="skill-tag" style="color:#20c997;border-color:#20c997">Planification de projets</span>
+                    <span class="skill-tag" style="color:#007bff;border-color:#007bff">Suivi des KPI</span>
+                    <span class="skill-tag" style="color:#6f42c1;border-color:#6f42c1">Communication interne</span>
+                    <span class="skill-tag" style="color:#dc3545;border-color:#dc3545">Rédaction de rapports</span>
+                    <span class="skill-tag" style="color:#ffc107;border-color:#ffc107">Organisation administrative</span>
+                    <span class="skill-tag" style="color:#17a2b8;border-color:#17a2b8">Présentation & Pitching</span>
+                    <span class="skill-tag" style="color:#fd7e14;border-color:#fd7e14">Gestion des priorités</span>
+                    <span class="skill-tag" style="color:#6c757d;border-color:#6c757d">Prise de décision</span>
+                    <span class="skill-tag" style="color:#20c997;border-color:#20c997">Suivi de performance</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Formation Section -->
+    <section id="formation" class="py-5 formation-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-heading">Formation</h2>
+                <div class="heading-line"></div>
+                <p class="section-lead mt-2">Mon parcours académique</p>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-9" data-aos="fade-up">
+                    <div class="formation-card">
+                        <div class="formation-header">
+                            <i class="fas fa-graduation-cap fa-3x mb-3 opacity-90"></i>
+                            <h3 class="fw-bold">ESEO — École Supérieure d'Électronique de l'Ouest</h3>
+                            <h5 class="opacity-90 fw-light mt-2">Cycle Ingénieur — 3<sup>e</sup> année</h5>
+                            <div class="d-flex justify-content-center gap-3 mt-3 flex-wrap">
+                                <span class="badge bg-white text-primary px-3 py-2 fw-semibold">Depuis 2022</span>
+                                <span class="badge bg-white text-success px-3 py-2 fw-semibold">Angers, France</span>
+                                <span class="badge bg-white px-3 py-2 fw-semibold" style="color:var(--secondary)">Cloud · Systèmes · Cybersécurité</span>
+                            </div>
+                        </div>
+                        <div class="p-4 p-lg-5">
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <h6 class="text-primary fw-bold mb-3"><i class="fas fa-brain me-2"></i>Compétences développées</h6>
+                                    <ul class="list-unstyled" style="color:var(--text)">
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Sécurité des systèmes informatiques</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Architecture cloud et virtualisation</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Développement sécurisé (Java, Python)</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Réseaux et protocoles TCP/IP</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Électronique et systèmes embarqués</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="text-primary fw-bold mb-3"><i class="fas fa-tasks me-2"></i>Méthodologies &amp; Soft Skills</h6>
+                                    <ul class="list-unstyled" style="color:var(--text)">
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Gestion de projet Agile / Scrum</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Travail collaboratif (Git, équipe)</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Analyse et conception UML</li>
+                                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Communication et leadership</li>
+                                        <li><i class="fas fa-check text-success me-2"></i>Veille technologique</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 contact-section">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-heading">Contactez-Moi</h2>
+                <div class="heading-line"></div>
+                <p class="section-lead mt-2">Intéressé par mon profil ? Parlons de votre projet !</p>
+            </div>
+            <div class="row g-5 align-items-start">
+                <!-- Form -->
+                <div class="col-lg-7" data-aos="fade-right">
+                    <div class="contact-form">
+                        <form id="contactForm" action="https://formspree.io/f/mldpybqa" method="POST" class="needs-validation position-relative" style="z-index:2" novalidate>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label text-white fw-semibold">Prénom</label>
+                                    <input type="text" class="form-control" name="Prénom" placeholder="Votre prénom" required>
+                                    <div class="invalid-feedback">Veuillez entrer votre prénom.</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label text-white fw-semibold">Nom</label>
+                                    <input type="text" class="form-control" name="Nom" placeholder="Votre nom" required>
+                                    <div class="invalid-feedback">Veuillez entrer votre nom.</div>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label text-white fw-semibold">Email</label>
+                                    <input type="email" class="form-control" name="Email" placeholder="votre@email.com" required>
+                                    <div class="invalid-feedback">Veuillez entrer un email valide.</div>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label text-white fw-semibold">Sujet</label>
+                                    <select class="form-select" name="Sujet" required>
+                                        <option value="">Choisissez un sujet</option>
+                                        <option value="stage">Opportunité de Stage</option>
+                                        <option value="cybersecurity">Projet Cybersécurité</option>
+                                        <option value="cloud">Projet Cloud</option>
+                                        <option value="gestion">Projet Gestion / Management</option>
+                                        <option value="collaboration">Collaboration</option>
+                                        <option value="other">Autre</option>
+                                    </select>
+                                    <div class="invalid-feedback">Veuillez choisir un sujet.</div>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label text-white fw-semibold">Message</label>
+                                    <textarea class="form-control" name="Message" rows="5" placeholder="Votre message..." required></textarea>
+                                    <div class="invalid-feedback">Veuillez entrer votre message.</div>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn btn-light btn-lg px-5 rounded-pill fw-semibold">
+                                        <i class="fas fa-paper-plane me-2"></i>Envoyer le Message
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <div id="form-status" class="text-center mt-3 fw-bold position-relative" style="z-index:2"></div>
+                    </div>
+                </div>
+                <!-- Contact Info -->
+                <div class="col-lg-5" data-aos="fade-left">
+                    <div class="d-flex flex-column gap-3">
+                        <div class="contact-info-card d-flex align-items-center gap-3">
+                            <div class="specialty-icon flex-shrink-0" style="width:52px;height:52px;font-size:1.2rem">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold" style="color:var(--text)">Email</h6>
+                                <a href="mailto:makla.aissah@reseau.eseo.fr" class="text-decoration-none" style="color:var(--text-muted)">makla.aissah@reseau.eseo.fr</a>
+                            </div>
+                        </div>
+                        <div class="contact-info-card d-flex align-items-center gap-3">
+                            <div class="specialty-icon flex-shrink-0" style="width:52px;height:52px;font-size:1.2rem;background:linear-gradient(135deg,#28a745,#20c997)">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold" style="color:var(--text)">Téléphone</h6>
+                                <a href="tel:+33764395863" class="text-decoration-none" style="color:var(--text-muted)">+33 7 64 39 58 63</a>
+                            </div>
+                        </div>
+                        <div class="contact-info-card d-flex align-items-center gap-3">
+                            <div class="specialty-icon flex-shrink-0" style="width:52px;height:52px;font-size:1.2rem;background:linear-gradient(135deg,#6f42c1,#007bff)">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold" style="color:var(--text)">Localisation</h6>
+                                <span style="color:var(--text-muted)">Angers, 49100 — France</span>
+                            </div>
+                        </div>
+
+                        <!-- Languages -->
+                        <div class="contact-info-card">
+                            <h6 class="fw-bold mb-3" style="color:var(--text)"><i class="fas fa-language me-2 text-primary"></i>Langues</h6>
+                            <div class="d-flex gap-3 flex-wrap">
+                                <div class="text-center">
+                                    <span class="badge bg-primary px-3 py-2">Français</span>
+                                    <div class="small mt-1" style="color:var(--text-muted)">Courant (B2)</div>
+                                </div>
+                                <div class="text-center">
+                                    <span class="badge bg-success px-3 py-2">Anglais</span>
+                                    <div class="small mt-1" style="color:var(--text-muted)">Intermédiaire (B1)</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social -->
+                        <div class="contact-info-card text-center">
+                            <h6 class="fw-bold mb-3" style="color:var(--text)">Réseaux Professionnels</h6>
+                            <div class="d-flex justify-content-center gap-3">
+                                <a href="https://www.linkedin.com/in/ezechiel-a%C3%AFssah-880b50252/" target="_blank" rel="noopener noreferrer"
+                                    class="social-icon bg-primary" data-bs-toggle="tooltip" title="LinkedIn">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="https://github.com/aissah-prog" target="_blank" rel="noopener noreferrer"
+                                    class="social-icon bg-dark" data-bs-toggle="tooltip" title="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="mailto:makla.aissah@reseau.eseo.fr"
+                                    class="social-icon bg-danger" data-bs-toggle="tooltip" title="Email">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <span class="fs-5 fw-bold text-primary glitch"><i class="fas fa-shield-alt me-2"></i>AME</span>
+                    <p class="mb-0 mt-1 opacity-75 small">Aïssah Makla Ezechiel — Portfolio Étudiant ESEO Angers</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0 opacity-75 small">&copy; 2025 Aïssah Makla Ezechiel. Tous droits réservés.</p>
+                    <p class="mb-0 opacity-50 small mt-1">Cybersécurité · Cloud · Gestion</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Toast -->
+    <div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3" style="z-index:2000">
+        <div id="successToast" class="toast align-items-center text-white bg-success border-0" role="alert">
+            <div class="d-flex">
+                <div class="toast-body fw-semibold">
+                    <i class="fas fa-check-circle me-2"></i>Message envoyé avec succès ! Je vous répondrai bientôt.
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── PROJECT MODALS ── -->
+    <!-- Modal 1 -->
+    <div class="modal fade" id="projectModal1" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="background:linear-gradient(135deg,#007bff,#20c997);color:white">
+                    <h5 class="modal-title fw-bold"><i class="fas fa-cloud me-2"></i>Projet Cloud Computing — DataCenter</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row g-4">
+                        <div class="col-md-8">
+                            <h6 class="text-primary fw-bold">Objectif du projet</h6>
+                            <p>Transformer les PC d'une salle informatique en une infrastructure DataCenter complète avec déploiement automatisé, supervision en temps réel et sécurisation réseau.</p>
+                            <h6 class="text-primary fw-bold mt-3">Technologies utilisées</h6>
+                            <ul>
+                                <li><strong>Vagrant :</strong> Déploiement automatisé des machines virtuelles</li>
+                                <li><strong>Ansible :</strong> Configuration et gestion automatisée (IaC)</li>
+                                <li><strong>LAMP Stack :</strong> Services web (Linux, Apache, MySQL, PHP)</li>
+                                <li><strong>Tomcat :</strong> Serveur d'applications Java</li>
+                                <li><strong>Zabbix :</strong> Supervision et monitoring de l'infrastructure</li>
+                                <li><strong>OPNsense :</strong> Firewall et sécurisation réseau</li>
+                                <li><strong>Load Balancer :</strong> Répartition de charge et haute disponibilité</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 rounded-3 text-center" style="background:linear-gradient(135deg,#007bff,#20c997)">
+                                <i class="fas fa-server fa-4x text-white mb-3"></i>
+                                <p class="text-white fw-semibold mb-1">Janvier — Juillet 2025</p>
+                                <p class="text-white opacity-75 small">ESEO Angers</p>
+                            </div>
+                            <div class="mt-3 d-grid gap-2">
+                                <a href="https://github.com/aissah-prog" target="_blank" class="btn btn-dark rounded-pill">
+                                    <i class="fab fa-github me-2"></i>GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal 2 -->
+    <div class="modal fade" id="projectModal2" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="background:linear-gradient(135deg,#28a745,#6f42c1);color:white">
+                    <h5 class="modal-title fw-bold"><i class="fas fa-layer-group me-2"></i>Projet InfraLogiciel</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row g-4">
+                        <div class="col-md-8">
+                            <h6 class="text-primary fw-bold">Objectif du projet</h6>
+                            <p>Mettre en place une infrastructure complète pour le déploiement d'une application web, incluant l'automatisation et la gestion collaborative du code.</p>
+                            <h6 class="text-primary fw-bold mt-3">Technologies utilisées</h6>
+                            <ul>
+                                <li><strong>Vagrant :</strong> Provisionnement d'environnements reproductibles</li>
+                                <li><strong>Git / GitHub :</strong> Gestion du code source et collaboration</li>
+                                <li><strong>Scripts Bash :</strong> Automatisation des tâches de déploiement</li>
+                                <li><strong>Linux :</strong> Administration système</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 rounded-3 text-center" style="background:linear-gradient(135deg,#28a745,#6f42c1)">
+                                <i class="fas fa-code-branch fa-4x text-white mb-3"></i>
+                                <p class="text-white fw-semibold mb-1">Déc 2024 — Jan 2025</p>
+                                <p class="text-white opacity-75 small">ESEO Angers</p>
+                            </div>
+                            <div class="mt-3 d-grid gap-2">
+                                <a href="https://github.com/aissah-prog" target="_blank" class="btn btn-dark rounded-pill">
+                                    <i class="fab fa-github me-2"></i>GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal 3 -->
+    <div class="modal fade" id="projectModal3" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="background:linear-gradient(135deg,#dc3545,#ffc107);color:white">
+                    <h5 class="modal-title fw-bold"><i class="fas fa-users me-2"></i>Réseau Social Web</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row g-4">
+                        <div class="col-md-8">
+                            <h6 class="text-primary fw-bold">Objectif du projet</h6>
+                            <p>Concevoir et développer un réseau social complet de A à Z, incluant l'authentification des utilisateurs, les profils, la publication de contenu et la gestion d'une base de données relationnelle.</p>
+                            <h6 class="text-primary fw-bold mt-3">Technologies utilisées</h6>
+                            <ul>
+                                <li><strong>PHP :</strong> Backend et logique métier</li>
+                                <li><strong>MySQL :</strong> Base de données relationnelle</li>
+                                <li><strong>HTML / CSS / JS :</strong> Frontend interactif</li>
+                                <li><strong>Sessions PHP :</strong> Authentification sécurisée</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 rounded-3 text-center" style="background:linear-gradient(135deg,#dc3545,#ffc107)">
+                                <i class="fas fa-globe fa-4x text-white mb-3"></i>
+                                <p class="text-white fw-semibold mb-1">Mai — Juin 2024</p>
+                                <p class="text-white opacity-75 small">ESEO Angers</p>
+                            </div>
+                            <div class="mt-3 d-grid gap-2">
+                                <a href="https://github.com/aissah-prog" target="_blank" class="btn btn-dark rounded-pill">
+                                    <i class="fab fa-github me-2"></i>GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal 4 -->
+    <div class="modal fade" id="projectModal4" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="background:linear-gradient(135deg,#6f42c1,#007bff);color:white">
+                    <h5 class="modal-title fw-bold"><i class="fab fa-microsoft me-2"></i>Infrastructures Réseaux &amp; Sécurité Azure</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="row g-4">
+                        <div class="col-md-8">
+                            <h6 class="text-primary fw-bold">Objectif du projet</h6>
+                            <p>Déployer une infrastructure réseau sécurisée sur Microsoft Azure avec chiffrement des données et sécurisation avancée des accès.</p>
+                            <h6 class="text-primary fw-bold mt-3">Technologies utilisées</h6>
+                            <ul>
+                                <li><strong>Microsoft Azure :</strong> Cloud provider et déploiement VM</li>
+                                <li><strong>Apache2 :</strong> Serveur web sécurisé (HTTPS)</li>
+                                <li><strong>MySQL :</strong> Base de données sécurisée</li>
+                                <li><strong>GPG :</strong> Chiffrement des données sensibles</li>
+                                <li><strong>SSH / Pare-feu Azure :</strong> Sécurisation des accès</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 rounded-3 text-center" style="background:linear-gradient(135deg,#6f42c1,#007bff)">
+                                <i class="fas fa-lock fa-4x text-white mb-3"></i>
+                                <p class="text-white fw-semibold mb-1">Oct — Nov 2023</p>
+                                <p class="text-white opacity-75 small">ESEO Angers</p>
+                            </div>
+                            <div class="mt-3 d-grid gap-2">
+                                <a href="https://github.com/aissah-prog" target="_blank" class="btn btn-dark rounded-pill">
+                                    <i class="fab fa-github me-2"></i>GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // ── AOS ──
+        AOS.init({ duration: 900, once: true, easing: 'ease-out-cubic' });
+
+        // ── Tooltips ──
+        document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));
+
+        // ── Dark mode ──
+        const html = document.documentElement;
+        const darkToggle = document.getElementById('darkToggle');
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        darkToggle.addEventListener('click', () => {
+            const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+        });
+
+        // ── Navbar scroll ──
+        const navbar = document.querySelector('.navbar-custom');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('navbar-scrolled', window.scrollY > 50);
+        });
+
+        // ── Typing animation ──
+        const phrases = [
+            'Étudiant Ingénieur Cybersécurité',
+            'Spécialiste Cloud Computing',
+            'Passionné de Sécurité Réseau',
+            'Gestionnaire de Projet',
+            'Technicien DevOps'
+        ];
+        let tIdx = 0, cIdx = 0, deleting = false;
+        const typingEl = document.getElementById('typing-text');
+        function typeLoop() {
+            const cur = phrases[tIdx];
+            typingEl.textContent = deleting ? cur.slice(0, --cIdx) : cur.slice(0, ++cIdx);
+            let delay = deleting ? 40 : 80;
+            if (!deleting && cIdx === cur.length) { delay = 2200; deleting = true; }
+            else if (deleting && cIdx === 0) { deleting = false; tIdx = (tIdx + 1) % phrases.length; delay = 400; }
+            setTimeout(typeLoop, delay);
+        }
+        typeLoop();
+
+        // ── Counter animation ──
+        let countersAnimated = false;
+        function animateCounters() {
+            if (countersAnimated) return;
+            countersAnimated = true;
+            document.querySelectorAll('.counter').forEach(counter => {
+                const target = +counter.dataset.target;
+                let cur = 0;
+                const step = target / 80;
+                const tick = () => {
+                    cur = Math.min(cur + step, target);
+                    counter.textContent = Math.ceil(cur);
+                    if (cur < target) requestAnimationFrame(tick);
+                };
+                tick();
+            });
+        }
+        new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting) animateCounters();
+        }, { threshold: .3 }).observe(document.querySelector('.stats-section'));
+
+        // ── Skill bar animation ──
+        function animateSkillBars() {
+            document.querySelectorAll('[data-skill]').forEach(row => {
+                const pct = row.dataset.skill;
+                row.querySelector('.progress-fill').style.width = pct + '%';
+            });
+        }
+        new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting) animateSkillBars();
+        }, { threshold: .2 }).observe(document.querySelector('.skills-section'));
+
+        // ── Contact form ──
+        const form = document.getElementById('contactForm');
+        const status = document.getElementById('form-status');
+        const toast = new bootstrap.Toast(document.getElementById('successToast'));
+
+        form.addEventListener('submit', async e => {
+            e.preventDefault();
+            if (!form.checkValidity()) { form.classList.add('was-validated'); return; }
+            const btn = form.querySelector('[type=submit]');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Envoi...';
+            try {
+                const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+                if (res.ok) {
+                    toast.show();
+                    form.reset();
+                    form.classList.remove('was-validated');
+                    status.innerHTML = '';
+                } else {
+                    status.innerHTML = '<span class="text-warning">Une erreur est survenue. Veuillez réessayer.</span>';
+                }
+            } catch {
+                status.innerHTML = '<span class="text-warning">Vérifiez votre connexion internet.</span>';
+            }
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-paper-plane me-2"></i>Envoyer le Message';
+        });
+
+        // ── Back to top ──
+        const btt = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => { btt.style.display = window.scrollY > 400 ? 'flex' : 'none'; });
+        btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        btt.style.display = 'none';
+        btt.style.alignItems = 'center';
+        btt.style.justifyContent = 'center';
+
+        // ── Matrix canvas ──
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*';
+        const fs = 12, cols = Math.floor(window.innerWidth / fs);
+        const drops = Array(cols).fill(1);
+        setInterval(() => {
+            ctx.fillStyle = 'rgba(0,0,0,.04)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0F3'; ctx.font = fs + 'px monospace';
+            drops.forEach((y, i) => {
+                ctx.fillText(chars[Math.floor(Math.random() * chars.length)], i * fs, y * fs);
+                if (y * fs > canvas.height && Math.random() > .975) drops[i] = 0;
+                drops[i]++;
+            });
+        }, 40);
+
+        // ── Hero particles ──
+        const pc = document.getElementById('heroParticles');
+        for (let i = 0; i < 70; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const s = Math.random() * 14 + 4;
+            Object.assign(p.style, {
+                left: Math.random() * 100 + '%',
+                top: Math.random() * 100 + '%',
+                width: s + 'px', height: s + 'px',
+                animationDelay: Math.random() * 6 + 's',
+                animationDuration: (Math.random() * 5 + 5) + 's'
+            });
+            pc.appendChild(p);
+        }
+    </script>
+</body>
+</html>
